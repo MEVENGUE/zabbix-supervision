@@ -1,4 +1,4 @@
-# Projet Zabbix – Supervision d'un cluster K8s sur VM Hyper-V
+# Projet Zabbix – Supervision sur VM Hyper-V
 
 Ce dépôt décrit l'installation et la configuration d'un **serveur Zabbix 6.4** sur une VM Ubuntu 22.04 hébergée dans **Hyper-V**, ainsi que la mise en place d'un **scénario de supervision CPU** pour les nœuds d'un petit cluster Kubernetes (master + workers).
 
@@ -17,8 +17,6 @@ Ce dépôt décrit l'installation et la configuration d'un **serveur Zabbix 6.4*
 - Mettre en place un **déclencheur d'alerte** :
 
   - *"Utilisation CPU élevée (>80 % pendant 5 minutes)"*.
-
-- Tester et documenter ce scénario pour un **rapport de mini-projet / portfolio GitHub**, tout en respectant les bonnes pratiques de cybersécurité.
 
 ---
 
@@ -43,7 +41,7 @@ Ce dépôt décrit l'installation et la configuration d'un **serveur Zabbix 6.4*
                      |
                      +-- Zabbix-server (port 10051)
                      |
-                     +-- Vers agents Zabbix sur : k8s-master / k8s-worker1 / k8s-worker2 (port 10050)
+                     +-- Vers agents Zabbix sur : k8s-master / k8s-worker1 (port 10050)
 ```
 
 ### 2.2. Schéma logique détaillé des interconnexions
@@ -343,7 +341,7 @@ Dans l'interface Web :
 
 4. Onglet **Modèles** :
 
-   * Ajouter le modèle : **`Linux par agent Zabbix`** (ou équivalent).
+   * Ajouter le modèle : **`Linux by Zabbix agent`** (ou équivalent).
 
 5. Enregistrer.
 
@@ -380,7 +378,7 @@ Ce schéma montre le flux complet :
 
 1. Aller dans : **Configuration → Modèles**.
 
-2. Ouvrir le modèle : **`Linux par agent Zabbix`**.
+2. Ouvrir le modèle : **`Linux by Zabbix agent`**.
 
 3. Onglet : **Déclencheurs**.
 
@@ -407,7 +405,7 @@ Paramètres :
 Exemple d'expression générée (peut varier légèrement) :
 
 ```text
-{Linux par agent Zabbix:system.cpu.util[,system,avg1].min(5m)}>80
+{Linux by Zabbix agent Zabbix:system.cpu.util[,system,avg1].min(5m)}>80
 ```
 
 Valider et **Ajouter** le déclencheur.
@@ -551,7 +549,7 @@ Pour éviter d'exposer des informations exploitables par un attaquant :
 
 ---
 
-## 13. Pistes d'amélioration
+## 13. Autres ajouts
 
 * Ajouter d'autres déclencheurs :
 
@@ -573,6 +571,6 @@ Pour éviter d'exposer des informations exploitables par un attaquant :
 
 ---
 
-> Ce README sert de base documentaire pour le mini-projet Zabbix.
+> Ce README sert de base documentaire pour l'installation et test Zabbix.
 
-> Il décrit l'architecture, les étapes d'installation et un scénario d'alerte simple, sans divulguer d'informations permettant un accès direct à la machine.
+> Il décrit l'architecture, les étapes d'installation et un scénario d'alerte simple.
