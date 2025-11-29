@@ -1,0 +1,24 @@
+# Fichiers de configuration sensibles Zabbix
+/etc/zabbix/zabbix_server.conf
+/etc/zabbix/web/zabbix.conf.php
+/etc/zabbix/zabbix_agentd.conf
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Fichiers temporaires
+*.tmp
+*.log
+
+# Fichiers d'environnement
+.env
+.env.local
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+
